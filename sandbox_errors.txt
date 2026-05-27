@@ -1,0 +1,53 @@
+# This file is used to place output errors to take screenshots
+
+# ERROR 1
+
+error - (client)/app/blog/[slug]/page.tsx
+Error: The `params` property was used before it was awaited in Page "/blog/[slug]". 
+
+In Next.js 16, `params` and `searchParams` are now asynchronous. 
+Please update your component to await these values.
+
+  6 | export default function Page({ params }) {
+> 7 |   const slug = params.slug;
+
+    |                ^
+  8 |   return <div>Post: {slug}</div>;
+  9 | }
+
+Learn more: https://nextjs.org
+
+
+# ERROR 2
+
+node:internal/process/promises:288
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+Error: [Next.js] The `cookies()` API was used synchronously. 
+In Next.js 16, `cookies()` is now asynchronous and must be awaited.
+
+    at Page (./app/dashboard/settings/page.tsx:14:18)
+    at stringify (<anonymous>)
+    at p (/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:39452)
+    at /node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:44315
+    at async Promise.all (index 0)
+    at async rJ (/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:43773)
+    at async /node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:48321
+    at async r4 (/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:49412)
+    at async rB (/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:38:2276)
+    at async doRender (/node_modules/next/dist/server/base-server.js:1418:30)
+
+-  cause: Error: Route /dashboard/settings/page.tsx:14:18 accessed `cookies()` without await.
+    at /node_modules/next/dist/server/app-render/dynamic-rendering.js:102:15
+    at Object.get (./app/dashboard/settings/page.tsx:14:18)
+
+[Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details.] {
+  digest: 'NEXT_RENDER_ERROR:291038475',
+  page: '/dashboard/settings'
+}
+
+ ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+ event - compiled client and server successfully in 1422 ms (184 modules)
+ wait  -  compiling /dashboard/settings/page (client and server)...
+ event - compiled successfully in 98 ms (31 modules)
