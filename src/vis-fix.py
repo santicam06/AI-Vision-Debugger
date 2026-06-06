@@ -1,7 +1,6 @@
 # ___________________________________________
-# RUN AS -> python vis-fix.py --<namefile>
+# RUN AS -> python vis-fix.py --<photofile>
 # Include file extension!
-# Author: Santiago Camacho Moyano
 # ___________________________________________
 
 from PIL import Image
