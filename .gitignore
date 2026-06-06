@@ -224,6 +224,8 @@ image_tests
 !image_tests\error_2.jpeg
 !image_tests\error_3.jpeg
 
+# Debug file
+src/debug.txt
 
 # Agents
 GEMINI.md
