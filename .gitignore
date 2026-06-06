@@ -217,6 +217,14 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+
+# Images directory
+image_tests
+!image_tests\error_1.jpeg
+!image_tests\error_2.jpeg
+!image_tests\error_3.jpeg
+
+
 # Agents
 GEMINI.md
 AGENTS.md
