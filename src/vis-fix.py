@@ -12,12 +12,15 @@ from tavily import TavilyClient
 
 from pydantic import BaseModel, Field
 
+
 load_dotenv(find_dotenv())
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 tavily = TavilyClient(api_key=TAVILY_API_KEY)
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
+
+sys.stderr = open(os.path.join(script_dir, "debug.txt"), "w", encoding="utf-8")
 
 instructions_path = os.path.join(script_dir, "INSTRUCTIONS.md")
 with open(instructions_path, "r", encoding="utf-8") as f:
@@ -77,6 +80,8 @@ def main():
             raise ValueError('Missing image flag. Usage: --[namefile]. Include extension.')
 
         image = image.removeprefix('--')
+
+        print("🔎🤔 Analyzing your image's bugs... stand by.")
 
         image_bs64 = process_image(os.path.join(image_dir, image))
         print(f"Size of the Base64 string: {len(image_bs64)}", file=sys.stderr)
@@ -168,7 +173,7 @@ def main():
 
         # Ensure valid state for output, not empty
         final_output = message.content or "😕 No valid answers from Kimi K."
-        print(f"🤖 Kimi K says:\n\n {final_output}")
+        print(f"\n🤖 Analyzer says:\n\n{final_output}\n")
                   
     except RateLimitError:
         print("Rate limit exceeded. Please wait and try again later.", file=sys.stderr)

@@ -15,6 +15,9 @@ Before running the application, follow these steps:
 
 1. For this repository, create a **GitHub Codespace (Cloud)** OR clone it locally and open it with your preferred code editor (e.g. Visual Studio Code, ...).
 
+>[!IMPORTANT]
+From this point on, make sure that your present working directory on your terminal is the root directory of the application: `.\AI-Vision-Debugger`.
+
 2. **Install Python 3.10+** (If not already installed):
    - **Windows**: Download the latest installer from [python.org](https://www.python.org/downloads/windows/) or use: `winget install Python.Python.3.12`
    - **macOS**: Use Homebrew: `brew install python`
@@ -23,8 +26,7 @@ Before running the application, follow these steps:
 
 3. **Create and Activate a Virtual Environment**:
 
->[!IMPORTANT]
-From this point on, make sure that your present working directory on your terminal is the root directory of the application: `.\AI-Vision-Debugger`. 
+
 
    - Create the environment:
      - **Windows**: `python -m venv .venv`
@@ -73,14 +75,22 @@ From this point on, make sure that your present working directory on your termin
 
 ## 🚀 Usage
 
-> [!IMPORTANT]
-> Pass only the basename of the image (no `image_tests/` prefix) and include the file extension. The image must be placed inside `image_tests/` beforehand.
+1) Take a screenshot of the error you are having in your development environment (terminal, IDE, editor, etc.). 
+    - Screenshot on Windows: `Windows key + Shift + S` (image copied to clipboard)
+    - Screenshot on Mac: `Command + Shift + 4`
+    - Screenshot on Linux: `Shift + Print Screen`
+
+2) Save/Paste the picture into `./image_tests/`
+
+Supported image formats: JPEG (.jpg, .jpeg), PNG (.png), WebP (.webp), BMP (.bmp), GIF (.gif), TIFF (.tif, .tiff)
 
 ### Run command
 
 ```bash
-python src/vis-fix.py --error_1.jpeg
+python src/vis-fix.py --<filename>.jpeg
 ```
+> [!IMPORTANT]
+> Pass only the basename of the image (no `image_tests/` prefix) and include the file extension. The image must be placed inside `image_tests/` beforehand.
 
 > [!NOTE]
-> The image is automatically converted to RGB, resized to a maximum of 1024×1024, and re-encoded as JPEG (quality 85) before being sent to the vision model. This is intentional, to optimize latency and token costs.
+> Diagnostic logs (iteration traces, tool calls, errors) are written to `src/debug.txt` (overridden per run); only the final diagnosis is printed to stdout.
