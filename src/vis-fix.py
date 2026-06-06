@@ -6,7 +6,7 @@
 from PIL import Image
 import io, base64, os, sys
 from openai import OpenAI, RateLimitError, pydantic_function_tool
-
+from openai.types.chat import ParsedChatCompletionMessage
 from dotenv import load_dotenv, find_dotenv
 from tavily import TavilyClient
 
@@ -100,6 +100,7 @@ def main():
             }
         ]
         
+        message: ParsedChatCompletionMessage[None] | None = None
         i = 0 
         while i < 5:
             i += 1
@@ -171,9 +172,12 @@ def main():
             else:
                 break
 
-        # Ensure valid state for output, not empty
-        final_output = message.content or "😕 No valid answers from Kimi K."
-        print(f"\n🤖 Analyzer says:\n\n{final_output}\n")
+        if message is not None:
+            # Ensure valid state for output, not empty
+            final_output = message.content or "😕 No valid answers from Kimi K."
+            print(f"\n🤖 Analyzer says:\n\n{final_output}\n")
+        else:
+            raise ValueError("Failed to get message from LLM.")
                   
     except RateLimitError:
         print("Rate limit exceeded. Please wait and try again later.", file=sys.stderr)
