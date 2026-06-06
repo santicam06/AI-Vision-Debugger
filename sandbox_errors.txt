@@ -1,4 +1,4 @@
-# This file is used to place output errors to take screenshots
+# This file is used to place output errors to take screenshots, place the errors below as desired:
 
 # ERROR 1
 
