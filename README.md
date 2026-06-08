@@ -20,14 +20,11 @@ From this point on, make sure that your present working directory on your termin
 
 2. **Install Python 3.10+** (If not already installed):
    - **Windows**: Download the latest installer from [python.org](https://www.python.org/downloads/windows/) or use: `winget install Python.Python.3.12`
-   - **macOS**: Use Homebrew: `brew install python`
+   - **macOS**: `brew install python`
    - **Linux (Ubuntu/Debian)**: `sudo apt update && sudo apt install python3 python3-venv python3-pip`
    - **Cloud Workspaces (Codespaces, etc.)**: Python is usually pre-installed. Run `python3 --version` to verify and skip this step.
 
 3. **Create and Activate a Virtual Environment**:
-
-
-
    - Create the environment:
      - **Windows**: `python -m venv .venv`
      - **macOS/Linux**: `python3 -m venv .venv`
