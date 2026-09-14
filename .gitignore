@@ -226,7 +226,3 @@ image_tests
 
 # Debug file
 src/debug.txt
-
-# Agents
-GEMINI.md
-AGENTS.md
